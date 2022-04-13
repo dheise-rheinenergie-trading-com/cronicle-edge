@@ -5,6 +5,12 @@ const PixlRequest = require('pixl-request');
 const request = new PixlRequest();
 const he = require('he');
 
+const { exec } = require("child_process");
+exec("/mnt/dua/cronicle/chained-arguments.sh", (err, stdout, stderr) => {
+  console.log(`${stdout}`);
+  console.log(`${stderr}`);
+});
+
 if(!process.env['WF_SIGNATURE']) throw new Error('WF Signature is not set')
 request.setHeader('x-wf-signature', process.env['WF_SIGNATURE'])
 request.setHeader('x-wf-id', process.env['JOB_ID'])
